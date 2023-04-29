@@ -22,7 +22,7 @@ void menu() {
     struct vendas produtovendido[MAX_PRODUTOSVENDIDOS]; // Criacao do array de vendas
     int num_produtos = 0;
 
-    int opcao = -1, opcaopesquisa2;
+    int opcao = -1, opcaopesquisa2, opcaoed;
 
     do {
 
@@ -51,14 +51,27 @@ void menu() {
                 remover_produto(produto, &num_produtos);
                 break;
             case 4:
-                editar_produto(produto, &num_produtos);
+                printf("1 - Editar por codigo de produto\n");
+                printf("2 - Editar por nome de produto\n");
+                scanf("%d", &opcaoed);
+                switch (opcaoed)
+                {
+                    case 1:
+                        editar_produto_codigo(produto, &num_produtos);
+                        break;
+                    case 2:
+                        editar_produto_nome(produto, &num_produtos);
+                        break;
+                    default:
+                        printf ("Opcao invalida. Fim do programa!\n");
+                        return; // Encerra o programa
+                }
                 break;
             case 5:
                 printf ("Pesquisar produtos por: \n");
                 printf ("1 - Codigo: \n");
                 printf ("2 - Nome\n");
                 scanf ("%d", &opcaopesquisa2);
-
                 switch (opcaopesquisa2)
                 {
                     case 1:

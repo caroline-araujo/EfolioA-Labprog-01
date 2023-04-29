@@ -17,17 +17,12 @@ void listar_produtos(struct produtos produto[], int *num_produtos) {
 
     printf("Produtos:\n");
 
-    while (!feof(estoque)) {
-        struct produtos produto_arquivo;
-        fscanf(estoque, "%d,%[^,],%d,%f", &produto_arquivo.codigo, produto_arquivo.produto, &produto_arquivo.quantidade, &produto_arquivo.preco);
-
-        if (feof(estoque)) {
-            break;
-        }
-
-        printf("%d, %s, %d, %.2f\n", produto_arquivo.codigo, produto_arquivo.produto, produto_arquivo.quantidade, produto_arquivo.preco);
+    while (fscanf(estoque, "%d,%[^,],%d,%f", &produto[*num_produtos].codigo, produto[*num_produtos].produto, &produto[*num_produtos].quantidade, &produto[*num_produtos].preco) == 4) {
+        printf("%d, %s, %d, %.2f\n", produto[*num_produtos].codigo, produto[*num_produtos].produto, produto[*num_produtos].quantidade, produto[*num_produtos].preco);
+        (*num_produtos)++;
     }
 
     fclose(estoque);
-    menu ();
+    menu();
 }
+

@@ -18,7 +18,7 @@ void pesquisar_produto_nome (struct produtos produto[], int *num_produtos) {
     char nomepesquisado[100];
 
     printf ("Digite o nome do produto que deseja pesquisar: ");
-    fgets (nomepesquisado, 100, stdin);
+    scanf ("%s", nomepesquisado);
 
     // Verifica se o ultimo caractere da string e \n e substitui por \0, se necessario
     if (nomepesquisado[strlen(nomepesquisado) - 1] == '\n') {
@@ -33,15 +33,15 @@ void pesquisar_produto_nome (struct produtos produto[], int *num_produtos) {
         sscanf(linha, "%d,%[^,],%d,%f", &produto_arquivo.codigo, produto_arquivo.produto, &produto_arquivo.quantidade, &produto_arquivo.preco);
 
     for (int i = 0; i < *num_produtos; i++) {
-        if (strcmp(produto[i].produto, nomepesquisado) == 0) { //Usando o strcmp pra percorrer o vetor de produtos e comparar o nome de cada produto com a string nomepesquisado
-            printf ("Produto encontrado! Produto: %d, %s, %d, %.2f\n", produto[i].codigo, produto[i].produto, produto[i].quantidade, produto[i].preco);
+        if (strcmp(produto_arquivo.produto, nomepesquisado) == 0) { //Usando o strcmp pra percorrer o vetor de produtos e comparar o nome de cada produto com a string nomepesquisado
+            printf ("Produto encontrado! Produto: %d, %s, %d, %.2f\n", produto_arquivo.codigo, produto_arquivo.produto, produto_arquivo.quantidade, produto_arquivo.preco);
             encontrado = 1;
         }
     }
     }
     // Se o produto nao foi encontrado, imprime a mensagem correspondente
     if (!encontrado) {
-        printf ("Produto n�o encontrado\n");
+        printf ("Produto nao encontrado\n");
     }
 
     fclose(estoque);
